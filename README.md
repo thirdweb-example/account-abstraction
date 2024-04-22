@@ -10,9 +10,9 @@ Showcases how to build:
 
 ## Live demo
 
-[Play around with the live demo](https://account-abstraction.thirdweb-preview.com)
+[Play around with the live preview](https://account-abstraction.thirdweb-preview.com)
 
-## Running this repo
+## Running locally
 
 ### Setup client id
 
@@ -29,25 +29,13 @@ const clientId = "......";
 ### Install dependencies
 
 ```bash
-yarn
+yarn install
 ```
 
 ### Start development server
 
 ```bash
 yarn dev
-```
-
-### Create a production build
-
-```bash
-yarn build
-```
-
-### Preview the production build
-
-```bash
-yarn start
 ```
 
 ## Resources

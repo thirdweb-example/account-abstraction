@@ -17,6 +17,8 @@ export default function Home() {
       </div>
 
       <Menu />
+
+      <Footer />
     </div>
   );
 }
@@ -38,7 +40,7 @@ function Header() {
       </h1>
 
       <p className="text-zinc-300 text-base">
-        Collection of examples using the thirdweb{" "}
+        Collection of ERC4337 examples using the thirdweb{" "}
         <a
           className="text-purple-400"
           target="_blank"
@@ -87,5 +89,19 @@ function MenuItem(props: { title: string; href: string; description: string }) {
         <p className="text-sm text-zinc-400">{props.description}</p>
       </article>
     </Link>
+  );
+}
+
+function Footer() {
+  return (
+    <div className="flex flex-col items-center mt-20">
+      <Link
+        className="text-center text-sm text-gray-400"
+        target="_blank"
+        href="https://github.com/thirdweb-example/account-abstraction"
+      >
+        View code on GitHub
+      </Link>
+    </div>
   );
 }
