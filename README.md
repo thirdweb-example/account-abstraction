@@ -1,6 +1,16 @@
-# thirdweb SDK + Next.js starter
+# Account Abstraction with the thirdweb Connect SDK
 
-## Setup client id
+This repo is a collection of reference implementations for account abstraction features using the [Connect SDK](https://portal.thidweb.com/connect)
+
+Showcases how to build:
+
+- Gasless transactions
+- Session keys
+- Batch transactions
+
+## Usage
+
+### Setup client id
 
 Before you start, you need to replace the placeholder `clientId` with your client ID to use thirdweb SDK.
 
@@ -11,20 +21,6 @@ Go to `src/client.ts` file and replace the placeholder `clientId` with your clie
 ```ts
 const clientId = "......";
 ```
-
-## Usage with App Router
-
-If you are using App Router, You can not import client components/hooks directly from `thirdweb/react` package directly in server components.
-
-You should export them from the `src/thirdweb.ts` file instead which has been marked with `"use client"` directive at the top of the file so that Next.js can process it properly.
-
-```ts
-// server component
-import { ThirdwebProvider } from "thirdweb/react"; // ❌
-import { ThirdwebProvider } from "@/app/thirdweb"; // ✅
-```
-
-## Usage
 
 ### Install dependencies
 
@@ -52,8 +48,8 @@ yarn start
 
 ## Resources
 
-- [thirdweb SDK documentation](https://portal.thirdweb.com/typescript/v5)
-- [React components and hooks](https://portal.thirdweb.com/typescript/v5/react)
+- [thirdweb Connect documentation](https://portal.thirdweb.com/connect)
+- [Connect SDK refence](https://portal.thirdweb.com/typescript/v5)
 - [thirdweb Dashboard](https://thirdweb.com/dashboard)
 
 ## Join our Discord!
