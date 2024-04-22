@@ -6,9 +6,8 @@ import { ThirdwebProvider } from "@/app/thirdweb";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "thirdweb SDK + Next starter",
-  description:
-    "Starter template for using thirdweb SDK with Next.js App router",
+  title: "Account Abstraction examples | thirdweb",
+  description: "Account Abstraction examples using the thirdweb Connect SDK",
 };
 
 export default function RootLayout({

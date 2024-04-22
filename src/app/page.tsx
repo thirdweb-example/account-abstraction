@@ -68,8 +68,8 @@ function Menu() {
       />
 
       <MenuItem
-        title="Batch transactions"
-        href="https://thirdweb.com/dashboard"
+        title="Batching transactions"
+        href="/batching"
         description="Execute multiple transactions atomically."
       />
     </div>

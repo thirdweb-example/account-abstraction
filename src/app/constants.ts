@@ -15,11 +15,18 @@ export const client = createThirdwebClient({
 
 export const chain = baseSepolia;
 export const factoryAddress = "0x7b5ba9D46b53aae55e2c2E9b38d9AfF9a0b158F8";
+export const tokenDropAddress = "0xd64A548A82c190083707CBEFD26958E5e6551D18";
 export const editionDropAddress = "0x638263e3eAa3917a53630e61B1fBa685308024fa";
 export const editionDropTokenId = 0n;
 
 export const editionDropContract = getContract({
   address: editionDropAddress,
+  chain,
+  client,
+});
+
+export const tokenDropContract = getContract({
+  address: tokenDropAddress,
   chain,
   client,
 });
