@@ -1,6 +1,6 @@
 # Account Abstraction with the thirdweb Connect SDK
 
-This repo is a collection of reference implementations for account abstraction features using the [Connect SDK](https://portal.thidweb.com/connect)
+This repo is a collection of reference implementations for account abstraction features using the [Connect SDK](https://portal.thidweb.com/connect).
 
 Showcases how to build:
 
@@ -8,7 +8,11 @@ Showcases how to build:
 - Session keys
 - Batch transactions
 
-## Usage
+## Live demo
+
+[Play around with the live demo](https://account-abstraction.thirdweb-preview.com)
+
+## Running this repo
 
 ### Setup client id
 
@@ -16,7 +20,7 @@ Before you start, you need to replace the placeholder `clientId` with your clien
 
 Refer to [Creating a client](https://portal.thirdweb.com/typescript/v5/client) guide to see how you can get a client id.
 
-Go to `src/client.ts` file and replace the placeholder `clientId` with your client ID.
+Go to `src/constants.ts` file and replace the placeholder `clientId` with your client ID.
 
 ```ts
 const clientId = "......";
