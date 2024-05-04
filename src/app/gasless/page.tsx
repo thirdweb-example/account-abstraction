@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { claimTo, getNFT, getOwnedNFTs } from "thirdweb/extensions/erc1155";
 import {
@@ -36,7 +35,7 @@ const GaslessHome: React.FC = () => {
       <ConnectButton client={client} accountAbstraction={accountAbstraction} />
       <div className="flex flex-col">
         {isNftLoading ? (
-          <div className="w-full aspect-square">Loading...</div>
+          <div className="w-full mt-24">Loading...</div>
         ) : (
           <>
             {nft ? (
@@ -48,13 +47,7 @@ const GaslessHome: React.FC = () => {
             ) : null}
             {smartAccount ? (
               <>
-                <p
-                  style={{
-                    textAlign: "center",
-                    width: "100%",
-                    marginTop: "10px",
-                  }}
-                >
+                <p className="font-semibold text-center mb-2">
                   You own {ownedNfts?.[0]?.quantityOwned.toString() || "0"}{" "}
                   Kittens
                 </p>
@@ -73,7 +66,6 @@ const GaslessHome: React.FC = () => {
                   onTransactionConfirmed={async () => {
                     alert("Claim successful!");
                   }}
-                  style={{ width: "100%", marginTop: "10px" }}
                 >
                   Claim!
                 </TransactionButton>

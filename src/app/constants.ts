@@ -1,5 +1,6 @@
 import { createThirdwebClient, getContract } from "thirdweb";
 import { baseSepolia } from "thirdweb/chains";
+import { SmartWalletOptions } from "thirdweb/wallets";
 
 // Replace this with your client ID string
 // refer to https://portal.thirdweb.com/typescript/v5/client on how to get a client ID
@@ -31,8 +32,8 @@ export const tokenDropContract = getContract({
   client,
 });
 
-export const accountAbstraction = {
+export const accountAbstraction: SmartWalletOptions = {
   chain,
   factoryAddress,
-  gasless: true,
+  sponsorGas: true,
 };

@@ -1,5 +1,4 @@
 "use client";
-
 import { balanceOf, claimTo as claimNFT } from "thirdweb/extensions/erc1155";
 import {
   ConnectButton,
@@ -83,7 +82,7 @@ const BatchingHome = () => {
               </p>
             )}
             <button
-              className="p-2 mr-4 rounded-md bg-white text-black"
+              className="p-4 mr-4 rounded-lg bg-white text-black font-medium"
               onClick={handleClick}
               disabled={isPending}
             >

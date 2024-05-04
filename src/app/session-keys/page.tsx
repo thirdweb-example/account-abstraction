@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import {
   ConnectButton,
@@ -55,9 +54,9 @@ const AddSigner = () => {
           </p>
           <div className="flex mt-4 mb-4">
             <input
-              className="rounded-lg text-black p-2 w-2/3 mr-4"
+              className="rounded-lg text-black p-4 w-2/3 mr-4"
               type="text"
-              placeholder="address or ENS"
+              placeholder="Address or ENS"
               onChange={(e) => setWalletToAdd(e.target.value)}
             />
             <TransactionButton
@@ -104,7 +103,7 @@ const AddSigner = () => {
           </ul>
         </div>
       ) : (
-        <p className="text-sm text-gray-400">Login to add session keys</p>
+        <p className="text-sm text-gray-400 mt-8">Login to add session keys</p>
       )}
       <Link href={"/"} className="text-sm text-gray-400 mt-8">
         Back to menu
