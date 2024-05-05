@@ -30,7 +30,7 @@ const GaslessHome: React.FC = () => {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-12 text-zinc-100">
-        Gasless Transactions
+        Sponsored Transactions
       </h1>
       <ConnectButton client={client} accountAbstraction={accountAbstraction} />
       <div className="flex flex-col">

@@ -58,9 +58,15 @@ function Menu() {
   return (
     <div className="grid gap-4 lg:grid-cols-3 justify-center">
       <MenuItem
-        title="Gasless transactions"
+        title="Sponsored transactions"
         href="/gasless"
         description="Execute transactions without requiring users to hold ETH."
+      />
+
+      <MenuItem
+        title="Multichain transactions"
+        href="/multichain"
+        description="Execute transactions on different chains maintaining the same smart account address."
       />
 
       <MenuItem
