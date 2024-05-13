@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "rm -rf .next && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,7 +12,7 @@
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "thirdweb": "^5.16.1-nightly-9f817cf812e3fff6f64382778df1f99739fc3379-20240505094342"
+    "thirdweb": "0.0.0-dev-dce7400bb21e5d86f8a914da0e81f506e3ea40bd-20240513192408"
   },
   "devDependencies": {
     "@types/node": "^20",
