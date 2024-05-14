@@ -13,9 +13,6 @@ export default function Home() {
 				<ConnectButton
 					client={client}
 					accountAbstraction={accountAbstraction}
-					connectModal={{
-						size: "compact",
-					}}
 				/>
 			</div>
 
