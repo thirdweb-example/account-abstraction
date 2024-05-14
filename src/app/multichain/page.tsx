@@ -8,7 +8,7 @@ import {
 	useActiveAccount,
 	useReadContract,
 } from "thirdweb/react";
-import { client, editionDropTokenId } from "../constants";
+import { accountAbstraction, client, editionDropTokenId } from "../constants";
 import Link from "next/link";
 import { arbitrumSepolia, baseSepolia } from "thirdweb/chains";
 import { ThirdwebContract, getContract } from "thirdweb";
@@ -25,10 +25,7 @@ const GaslessHome: React.FC = () => {
 			</h1>
 			<ConnectButton
 				client={client}
-				accountAbstraction={{
-					chain: baseSepolia,
-					sponsorGas: true,
-				}}
+				accountAbstraction={accountAbstraction}
 				connectModal={{
 					size: "compact",
 				}}
