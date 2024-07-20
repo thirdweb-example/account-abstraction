@@ -42,7 +42,7 @@ function Header() {
 					target="_blank"
 					href="https://x.com/AlexDotEth"
 				>
-					devAlex
+					devAlex.eth
 				</a>
 			</h1>
 
