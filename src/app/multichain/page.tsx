@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { balanceOf, claimTo, getNFT } from "thirdweb/extensions/erc1155";
 import {
 	ConnectButton,
@@ -12,6 +12,7 @@ import { accountAbstraction, client, editionDropTokenId } from "../constants";
 import Link from "next/link";
 import { arbitrumSepolia, baseSepolia } from "thirdweb/chains";
 import { ThirdwebContract, getContract } from "thirdweb";
+import { TxReceipt } from "../components/TxReceipt";
 
 const GaslessHome: React.FC = () => {
 	const smartAccount = useActiveAccount();
@@ -67,6 +68,7 @@ type NFTClaimerProps = {
 };
 
 const NFTClaimer: React.FC<NFTClaimerProps> = (props: NFTClaimerProps) => {
+	const [lastTxHash, setLastTxHash] = useState<string | null>(null);
 	const { data: nft, isLoading: isNftLoading } = useReadContract(getNFT, {
 		contract: props.dropContract,
 		tokenId: props.tokenId,
@@ -104,12 +106,19 @@ const NFTClaimer: React.FC<NFTClaimerProps> = (props: NFTClaimerProps) => {
 								onError={(error) => {
 									alert(`Error: ${error.message}`);
 								}}
-								onTransactionConfirmed={async () => {
-									alert("Claim successful!");
+								onTransactionConfirmed={async (receipt) => {
+									setLastTxHash(receipt.transactionHash);
 								}}
 							>
 								Claim!
 							</TransactionButton>
+							{lastTxHash && (
+								<TxReceipt
+									hash={lastTxHash}
+									chain={props.dropContract.chain}
+									onClose={() => setLastTxHash(null)}
+								/>
+							)}
 						</>
 					) : (
 						<p className="text-center mt-8">

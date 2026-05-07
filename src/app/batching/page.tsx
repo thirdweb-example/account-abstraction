@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { balanceOf, claimTo as claimNFT } from "thirdweb/extensions/erc1155";
 import {
 	ConnectButton,
@@ -10,6 +11,7 @@ import {
 } from "thirdweb/react";
 import {
 	accountAbstraction,
+	chain,
 	client,
 	editionDropContract,
 	editionDropTokenId,
@@ -17,9 +19,11 @@ import {
 } from "../constants";
 import Link from "next/link";
 import { getBalance, claimTo as claimToken } from "thirdweb/extensions/erc20";
+import { TxReceipt } from "../components/TxReceipt";
 
 const BatchingHome = () => {
 	const smartAccount = useActiveAccount();
+	const [lastTxHash, setLastTxHash] = useState<string | null>(null);
 	const { data: tokenBalance, refetch: refetchTokens } = useReadContract(
 		getBalance,
 		{
@@ -61,7 +65,7 @@ const BatchingHome = () => {
 			onSuccess: (result) => {
 				refetchNFTs();
 				refetchTokens();
-				alert("Success! Tx hash: " + result.transactionHash);
+				setLastTxHash(result.transactionHash);
 			},
 		});
 	};
@@ -99,6 +103,13 @@ const BatchingHome = () => {
 					<p>Login to get started</p>
 				)}
 			</div>
+			{lastTxHash && (
+				<TxReceipt
+					hash={lastTxHash}
+					chain={chain}
+					onClose={() => setLastTxHash(null)}
+				/>
+			)}
 			<Link href={"/"} className="text-sm text-gray-400 mt-8">
 				Back to menu
 			</Link>
