@@ -20,11 +20,13 @@ import {
 	editionDropAddress,
 } from "../constants";
 import Link from "next/link";
+import { TxReceipt } from "../components/TxReceipt";
 
 const AddSigner = () => {
 	const smartAccount = useActiveAccount();
 	const status = useActiveWalletConnectionStatus();
 	const [walletToAdd, setWalletToAdd] = useState("");
+	const [lastTxHash, setLastTxHash] = useState<string | null>(null);
 
 	const { data: activeSigners } = useReadContract(getAllActiveSigners, {
 		contract: getContract({
@@ -89,10 +91,23 @@ const AddSigner = () => {
 									},
 								});
 							}}
+							onError={(error) => {
+								alert(`Error: ${error.message}`);
+							}}
+							onTransactionConfirmed={async (receipt) => {
+								setLastTxHash(receipt.transactionHash);
+							}}
 						>
 							Add Session Key
 						</TransactionButton>
 					</div>
+					{lastTxHash && (
+						<TxReceipt
+							hash={lastTxHash}
+							chain={chain}
+							onClose={() => setLastTxHash(null)}
+						/>
+					)}
 					<h3 className="text-lg font-bold">Active session keys</h3>
 					<ul>
 						{activeSigners?.length ? (

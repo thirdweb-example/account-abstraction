@@ -1,5 +1,6 @@
 "use client";
 import type React from "react";
+import { useState } from "react";
 import { claimTo, getNFT, getOwnedNFTs } from "thirdweb/extensions/erc1155";
 import {
 	ConnectButton,
@@ -10,14 +11,17 @@ import {
 } from "thirdweb/react";
 import {
 	accountAbstraction,
+	chain,
 	client,
 	editionDropContract,
 	editionDropTokenId,
 } from "../constants";
 import Link from "next/link";
+import { TxReceipt } from "../components/TxReceipt";
 
 const GaslessHome: React.FC = () => {
 	const smartAccount = useActiveAccount();
+	const [lastTxHash, setLastTxHash] = useState<string | null>(null);
 	const { data: nft, isLoading: isNftLoading } = useReadContract(getNFT, {
 		contract: editionDropContract,
 		tokenId: editionDropTokenId,
@@ -55,7 +59,7 @@ const GaslessHome: React.FC = () => {
 							<>
 								<p className="font-semibold text-center mb-2">
 									You own {ownedNfts?.[0]?.quantityOwned.toString() || "0"}{" "}
-									Kittens
+									NFT
 								</p>
 								<TransactionButton
 									transaction={() =>
@@ -69,8 +73,8 @@ const GaslessHome: React.FC = () => {
 									onError={(error) => {
 										alert(`Error: ${error.message}`);
 									}}
-									onTransactionConfirmed={async () => {
-										alert("Claim successful!");
+									onTransactionConfirmed={async (receipt) => {
+										setLastTxHash(receipt.transactionHash);
 									}}
 								>
 									Claim!
@@ -90,6 +94,13 @@ const GaslessHome: React.FC = () => {
 					</>
 				)}
 			</div>
+			{lastTxHash && (
+				<TxReceipt
+					hash={lastTxHash}
+					chain={chain}
+					onClose={() => setLastTxHash(null)}
+				/>
+			)}
 			<Link href={"/"} className="text-sm text-gray-400 mt-8">
 				Back to menu
 			</Link>

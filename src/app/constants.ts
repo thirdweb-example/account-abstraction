@@ -15,8 +15,8 @@ export const client = createThirdwebClient({
 });
 
 export const chain = baseSepolia;
-export const tokenDropAddress = "0xd64A548A82c190083707CBEFD26958E5e6551D18";
-export const editionDropAddress = "0x638263e3eAa3917a53630e61B1fBa685308024fa";
+export const tokenDropAddress = "0x941a21c4B1036AE925f28B2B241D7346c9DF5d8c";
+export const editionDropAddress = "0xd35F1bE71EC781400ED4b19A1fFF6e0666037189";
 export const editionDropTokenId = 0n;
 
 export const editionDropContract = getContract({

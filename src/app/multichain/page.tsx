@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { balanceOf, claimTo, getNFT } from "thirdweb/extensions/erc1155";
 import {
 	ConnectButton,
@@ -12,6 +12,7 @@ import { accountAbstraction, client, editionDropTokenId } from "../constants";
 import Link from "next/link";
 import { arbitrumSepolia, baseSepolia } from "thirdweb/chains";
 import { ThirdwebContract, getContract } from "thirdweb";
+import { TxReceipt } from "../components/TxReceipt";
 
 const GaslessHome: React.FC = () => {
 	const smartAccount = useActiveAccount();
@@ -21,7 +22,7 @@ const GaslessHome: React.FC = () => {
 			<h1 className="text-center text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-12 text-zinc-100">
 				Multichain
 				<br />
-				Sponsored Transactions
+				sponsored transactions
 			</h1>
 			<ConnectButton
 				client={client}
@@ -35,7 +36,7 @@ const GaslessHome: React.FC = () => {
 				<NFTClaimer
 					receiverAddress={smartAccount?.address}
 					dropContract={getContract({
-						address: "0x638263e3eAa3917a53630e61B1fBa685308024fa",
+						address: "0xd35F1bE71EC781400ED4b19A1fFF6e0666037189",
 						chain: baseSepolia,
 						client,
 					})}
@@ -45,7 +46,7 @@ const GaslessHome: React.FC = () => {
 				<NFTClaimer
 					receiverAddress={smartAccount?.address}
 					dropContract={getContract({
-						address: "0x6A7a26c9a595E6893C255C9dF0b593e77518e0c3",
+						address: "0x51F5ad46db789Db86647B1BC8C4aD5085efbf734",
 						chain: arbitrumSepolia,
 						client,
 					})}
@@ -67,6 +68,7 @@ type NFTClaimerProps = {
 };
 
 const NFTClaimer: React.FC<NFTClaimerProps> = (props: NFTClaimerProps) => {
+	const [lastTxHash, setLastTxHash] = useState<string | null>(null);
 	const { data: nft, isLoading: isNftLoading } = useReadContract(getNFT, {
 		contract: props.dropContract,
 		tokenId: props.tokenId,
@@ -89,7 +91,7 @@ const NFTClaimer: React.FC<NFTClaimerProps> = (props: NFTClaimerProps) => {
 					{props.receiverAddress ? (
 						<>
 							<p className="font-semibold text-center my-2">
-								You own {ownedNfts?.toString() || "0"} Kittens on{" "}
+								You own {ownedNfts?.toString() || "0"} NFT on{" "}
 								{props.dropContract.chain.name}
 							</p>
 							<TransactionButton
@@ -104,16 +106,23 @@ const NFTClaimer: React.FC<NFTClaimerProps> = (props: NFTClaimerProps) => {
 								onError={(error) => {
 									alert(`Error: ${error.message}`);
 								}}
-								onTransactionConfirmed={async () => {
-									alert("Claim successful!");
+								onTransactionConfirmed={async (receipt) => {
+									setLastTxHash(receipt.transactionHash);
 								}}
 							>
 								Claim!
 							</TransactionButton>
+							{lastTxHash && (
+								<TxReceipt
+									hash={lastTxHash}
+									chain={props.dropContract.chain}
+									onClose={() => setLastTxHash(null)}
+								/>
+							)}
 						</>
 					) : (
 						<p className="text-center mt-8">
-							Login to claim this Kitten on {props.dropContract.chain.name}!
+							Login to claim this NFT on {props.dropContract.chain.name}!
 						</p>
 					)}
 				</>
